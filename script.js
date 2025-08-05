@@ -10,7 +10,7 @@ function getHumanChoice() {
   const choices = ["rock", "paper", "scissors"];
   let choice;
   do {
-    choice = prompt("Enter rock, paper, or scissors:").toLowerCase();
+    choice = prompt("Enter rock, paper, or scissors \nUSE DEVTOOLS TO VIEW THE RESULT:").toLowerCase();
   } while (!choices.includes(choice?.toLowerCase()));
   return choice.toLowerCase();
 }
