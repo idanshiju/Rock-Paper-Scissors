@@ -44,11 +44,14 @@ function playGame() {
     if (result === "human") {
       console.log(`You win this round!`);
       humanScore++;
+      console.log(`You: ${humanScore}, Computer: ${computerScore}`);
     } else if (result === "computer") {
       console.log(`You lose this round!`);
       computerScore++;
+      console.log(`You: ${humanScore}, Computer: ${computerScore}`);
     } else {
       console.log("This round is a tie!");
+      console.log(`You: ${humanScore}, Computer: ${computerScore}`);
     }
   }
 
