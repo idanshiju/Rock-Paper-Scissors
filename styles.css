@@ -1,0 +1,166 @@
+:root {
+  --bg: #e59c42;
+  --text: #ffffff;
+  --shadow: #000000;
+  --glow: #f3c892;
+}
+
+body {
+  background-image: url("images/classroombg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: var(--bg);
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  color: var(--text);
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+  font-size: clamp(32px, 6vw, 50px);
+}
+
+.b1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 150px;
+  gap: 20px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.buttons button,
+.restart {
+  width: 100px;
+  height: 100px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: var(--bg);
+  box-shadow: 0 0 15px var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.buttons button:hover,
+.restart:hover {
+  transform: scale(1.1) rotate(45deg); /* combined */
+  box-shadow: 0 0 15px var(--glow);
+}
+
+.restart {
+  background-image: url("images/restart.png");
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  display: none;
+}
+
+.rock { background-image: url("images/leftHand/rockL.png"); }
+.paper { background-image: url("images/leftHand/paperL.png"); }
+.scissors { background-image: url("images/leftHand/scissorsL.png"); }
+
+/* Font: prefer no spaces in filenames; fix format; add font-display */
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("font/Moliga-DEMO.otf") format("opentype");
+  font-display: swap;
+}
+
+.round {
+  text-align: center;
+  color: var(--text);
+  font-family: 'MyCustomFont', system-ui, sans-serif;
+  text-transform: capitalize;
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-shadow: var(--shadow) 2px 2px 4px;
+  width: 200px;
+  margin: 0 auto;
+  white-space: normal;
+  line-height: 1.4;
+}
+
+.computer { width: 100px; height: 100px; }
+
+.choice {
+  width: 350px;
+  height: 350px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.choice.player { order: 0; }
+.choice.computer { order: 2; }
+
+/* If you keep this approach, wire it in JS; else remove these three rules */
+.human-choice-display {
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: none;
+}
+.buttons.show-choice .human-choice-display { display: block; }
+.buttons.show-choice button { display: none; }
+
+/* Animation classes actually used by JS */
+.choice.player.slide-in { animation: slideInLeft 300ms ease both; }
+.choice.computer.slide-in { animation: slideInRight 300ms ease both; }
+.choice.player.slide-out { animation: slideOutLeft 300ms ease both; }
+.choice.computer.slide-out { animation: slideOutRight 300ms ease both; }
+
+/* Keyframes */
+@keyframes slideOutLeft {
+  from { transform: translateX(0); opacity: 1; }
+  to   { transform: translateX(-150%); opacity: 0; }
+}
+@keyframes slideOutRight {
+  from { transform: translateX(0); opacity: 1; }
+  to   { transform: translateX(150%); opacity: 0; }
+}
+@keyframes slideInLeft {
+  from { transform: translateX(-150%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideInRight {
+  from { transform: translateX(150%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+/* Screen-reader utility */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  margin: -1px; padding: 0; overflow: hidden;
+  border: 0; clip: rect(0 0 0 0); clip-path: inset(50%);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  .buttons button:hover, .restart:hover { transform: none; }
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 768px) {
+  .b1 { padding: 0 24px; gap: 12px; }
+  .buttons { gap: 24px; }
+  .buttons button, .restart, .human-choice-display, .computer { width: 72px; height: 72px; }
+  .choice { width: 240px; height: 240px; }
+}

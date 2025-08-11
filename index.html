@@ -1,0 +1,40 @@
+<!-- Version 0.5 -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ROCK✊, PAPER🖐️, SCISSORS✌️</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>ROCK PAPER SCISSORS</h1>
+
+    <div class="b1">
+      <div class="buttons">
+        <!-- If you choose to keep this approach, wire it up in JS; otherwise remove this -->
+        <div class="human-choice-display" aria-hidden="true"></div>
+
+        <button class="rock" data-choice="rock" aria-label="Choose Rock"></button>
+        <button class="paper" data-choice="paper" aria-label="Choose Paper"></button>
+        <button class="scissors" data-choice="scissors" aria-label="Choose Scissors"></button>
+      </div>
+
+      <!-- role=status announces changes; h2/h3 stay inside for visual structure -->
+      <div class="round" role="status" aria-live="polite">
+        <h2>ROUND: 1</h2>
+        <h3>0 : 0</h3>
+        <button class="restart" aria-label="Restart game" title="Restart">
+          <span class="visually-hidden">Restart</span>
+        </button>
+      </div>
+
+      <div class="computer" aria-hidden="true"></div>
+    </div>
+
+    <!-- Demote second H1; wire it up or remove if unused -->
+    <p class="result" aria-live="polite"></p>
+
+    <script src="game.js" defer></script>
+  </body>
+</html>
